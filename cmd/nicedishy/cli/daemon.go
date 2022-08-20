@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"github.com/marc-campbell/nicedishy-linux/pkg/fast"
 	"github.com/marc-campbell/nicedishy/pkg/logger"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -20,6 +21,11 @@ func DaemonCmd() *cobra.Command {
 			if v.GetString("log-level") == "debug" {
 				logger.Info("setting log level to debug")
 				logger.SetDebug()
+			}
+
+			// testing
+			if err := fast.Run(); err != nil {
+				return err
 			}
 
 			return nil
